@@ -17,7 +17,7 @@
             $query = $db->prepare('INSERT into users(`login`, `password`, `email`) values (?, ?, ?)');
             $query -> execute(array($_POST['login'], md5($_POST['password']), $_POST['email']));
             $_SESSION['login'] = $_POST['login'];
-            header('location: index.php');
+            header('location: main-page.php');
             $db->connection = null;
         }
         
@@ -36,7 +36,7 @@
 </head>
 <body>
     <div class="nav">
-        <a class="back" href="front_page.php"><button class="btn btn-outline-dark btn-lg">Strona startowa</button></a>
+        <a class="back" href="index.php"><button class="btn btn-outline-dark btn-lg">Strona startowa</button></a>
         <p class="text log-reg">REJESTRACJA</p>
     </div>
     <div class="container d-flex justify-content-center">
@@ -44,11 +44,11 @@
 
             <div class="box mb-3">
                 <label class="form-label">Login</label>
-                <input type="text" class="form-control" name = "login">
+                <input type="text" class="form-control" name = "login" maxlength="30">
             </div>
             <div class="box mb-3">
                 <label for="exampleInputPassword1" class="form-label">Hasło</label>
-                <input type="password" class="form-control" name = "password" minlength = "8">
+                <input type="password" class="form-control" name = "password" minlength = "8" >
             </div>
             <div class="box mb-3">
                 <label for="exampleInputEmail1" class="form-label">Email </label>

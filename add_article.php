@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['login'])){
-        header('location: front_page.php');
+        header('location: index.php');
     }
 
     $zmienna = "";
@@ -13,7 +13,7 @@
             include('dbconnect.php');
             $query = $db -> prepare('INSERT INTO `article`(`title`, `description`, `category`) VALUES (?, ?, ?)');
             $query -> execute(array($_POST['title'], $_POST['desc'], $_POST['cat']));
-            header('location: index.php');
+            header('location: main-page.php');
         }
         
     }
@@ -31,26 +31,10 @@
 </head>
 <body>
     <div class="nav">
-        <a class="back" href="index.php"><button class="btn btn-outline-dark btn-lg">Strona główna</button></a>
+        <a class="back" href="main-page.php"><button class="btn btn-outline-dark btn-lg">Strona główna</button></a>
         <p class="text edit">DODAWANIE</p>
     </div>
-    <!-- <form action="" method="post">
-        tytuł: <input type="text" name="title" id=""> <br>
-        opis: <textarea name="desc" id="" cols="30" rows="10"></textarea><br>
-        kategoria: 
-        <select name="cat" id="">
-            <?php
-                /*include('dbconnect.php');
 
-                $q = "SELECT `id`, `type` FROM `categories`";
-
-                foreach($db -> query($q) as $row){
-                    print "<option value = ".$row[0].">".$row[1]."</option>";
-                }*/
-            ?>
-        </select>
-        <input type="submit" value="Dodaj" name="submit">
-    </form> -->
     <div class="container  d-flex justify-content-center">
         <?php
             echo "<form action=\"\" method=\"post\">

@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['login'])){
-        header('location: front_page.php');
+        header('location: index.php');
     }
 
     if(!isset($_POST['edit'])){
@@ -16,7 +16,7 @@
             include('dbconnect.php');
             $query = $db -> prepare('UPDATE `article` set `title` = ?, `description` = ?, `category` = ? WHERE  `id` = ?');
             $query -> execute(array($_POST['title'], $_POST['desc'], $_POST['cat'], $_POST['article_id']));
-            header('location: index.php');
+            header('location: main-page.php');
         }
         
     }
@@ -34,7 +34,7 @@
 </head>
 <body>
     <div class="nav">
-        <a class="back" href="index.php"><button class="btn btn-outline-dark btn-lg">Strona główna</button></a>
+        <a class="back" href="main-page.php"><button class="btn btn-outline-dark btn-lg">Strona główna</button></a>
         <p class="text edit">EDYCJA</p>
     </div>
     <div class="container d-flex justify-content-center">
@@ -45,63 +45,39 @@
             $q -> execute(array($_POST['hidden_edit']));
 
             $result = $q -> fetch(PDO::FETCH_ASSOC);
-            
-
-            // echo "<form action=\"\" method=\"post\">
-            //     tytuł: <input type=\"text\" name=\"title\" value=".$result['title']."> <br>
-            //     opis: <textarea name=\"desc\"  cols=\"30\" rows=\"10\">".$result['description']."</textarea><br>
-            //     kategoria: 
-            //     <select name=\"cat\">";
-                
-                    
-
-                    // $q = "SELECT `id`, `type` FROM `categories`";
-
-                    // foreach($db -> query($q) as $row){
-                    //     if($row[1] == $result['type']){
-                    //         print print "<option selected=\"selected\" value = ".$row[0].">".$row[1]."</option>";
-                    //     }
-                    //     else{
-                    //         print "<option  value = ".$row[0].">".$row[1]."</option>";
-                    //     }
-                    // }
-
-            // echo "</select>
-            // <input type=\"hidden\" name=\"article_id\" value = ".$_POST['hidden_edit'].">
-            // <input type=\"submit\" value=\"edytuj\" name=\"submit\">";
-            ?>
-
-                <form action="" method="post">
-
-                <div class="box mb-3">
-                    <label class="form-label">Tytuł</label>
-                    <input id="edit_title" type="text\" class="form-control" name = "title" maxlength="100" value = "<?php echo $result['title'] ?>">
-                    <div id="title_chars_edit" class="form-text\">0/100</div>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Opis</label>
-                    <textarea id="edit_desc" class="form-control" id="exampleFormControlTextarea1" rows="5" name = "desc" maxlength="1000"><?php echo $result['description'] ?></textarea>
-                    <div id="desc_chars_edit" class="form-text">0/1000</div>
-                </div>
-                <?php
-                echo "<select class=\"form-select\" name = \"cat\">";
-                    $q = "SELECT `id`, `type` FROM `categories`";
-
-                    foreach($db -> query($q) as $row){
-                        if($row[1] == $result['type']){
-                            print print "<option selected=\"selected\" value = ".$row[0].">".$row[1]."</option>";
-                        }
-                        else{
-                            print "<option  value = ".$row[0].">".$row[1]."</option>";
-                        }
-                    }
-                echo "</select>
-                <input type=\"hidden\" name=\"article_id\" value = ".$_POST['hidden_edit'].">
-                <button style=\"margin-top: 20px;\" type=\"submit\" class=\"btn btn-primary\" name = \"submit\">Edytuj</button>
-                </form>";
         }
+    ?>
+
+    <form action="" method="post">
+
+    <div class="box mb-3">
+        <label class="form-label">Tytuł</label>
+        <input id="edit_title" type="text\" class="form-control" name = "title" maxlength="100" value = "<?php echo $result['title'] ?>">
+        <div id="title_chars_edit" class="form-text\">0/100</div>
+    </div>
+    <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Opis</label>
+        <textarea id="edit_desc" class="form-control" id="exampleFormControlTextarea1" rows="5" name = "desc" maxlength="1000"><?php echo $result['description'] ?></textarea>
+        <div id="desc_chars_edit" class="form-text">0/1000</div>
+    </div>
+    <?php
+        $q = "SELECT `id`, `type` FROM `categories`";
+        echo "<select class=\"form-select\" name = \"cat\">";
+
+            foreach($db -> query($q) as $row){
+                if($row[1] == $result['type']){
+                    print print "<option selected=\"selected\" value = ".$row[0].">".$row[1]."</option>";
+                }
+                else{
+                    print "<option  value = ".$row[0].">".$row[1]."</option>";
+                }
+            }
+        echo "</select>
+        <input type=\"hidden\" name=\"article_id\" value = ".$_POST['hidden_edit'].">
+        <button style=\"margin-top: 20px;\" type=\"submit\" class=\"btn btn-primary\" name = \"submit\">Edytuj</button>
+        </form>";
         
-        ?>
+    ?>
         
     </div>
     <div class="validation"><?php echo $zmienna ?></div>

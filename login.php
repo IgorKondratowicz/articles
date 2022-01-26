@@ -25,7 +25,7 @@
             }
             else{
                 $_SESSION['login'] = $_POST['login'];
-                header('location: index.php');
+                header('location: main-page.php');
             }
 
             $db->connection = null;
@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="nav">
-        <a class="back" href="front_page.php"><button class="btn btn-outline-dark btn-lg">Strona startowa</button></a>
+        <a class="back" href="index.php"><button class="btn btn-outline-dark btn-lg">Strona startowa</button></a>
         <p class="text log-reg">LOGOWANIE</p>
     </div>
     <div class="container d-flex justify-content-center">
