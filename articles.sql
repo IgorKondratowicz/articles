@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 25 Sty 2022, 11:05
+-- Czas generowania: 26 Sty 2022, 11:19
 -- Wersja serwera: 10.4.21-MariaDB
 -- Wersja PHP: 8.0.12
 
@@ -45,6 +45,16 @@ CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `type` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Zrzut danych tabeli `categories`
+--
+
+INSERT INTO `categories` (`id`, `type`) VALUES
+(1, 'polityka'),
+(2, 'sport'),
+(3, 'zdrowie'),
+(4, 'COVID-19');
 
 -- --------------------------------------------------------
 
@@ -90,19 +100,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT dla tabeli `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT dla tabeli `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT dla tabeli `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Ograniczenia dla zrzutów tabel
